@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualização de produtos</title>
+</head>
+
+<body>
+    <div id="resposta"></div>
+    <form action="" method="post">
+
+            ID: <input type="text" id="id"><br>
+            Descrição: <input type="text" id="descricao"><br>
+            Preço: <input type="text" id="preco"><br>
+            Imagem: <input type="text" id="imagem"><br>
+
+            <button type="button" id="btnAtualizar">atualizar</button>
+    </form>
+
+    <div id="listadeprodutos"></div>
+    
+    <script>
+
+        document.querySelector('#btnAtualizar').addEventListener('click',
+         () => {
+
+            const id = document.querySelector('#id').value;
+
+            const dados = {
+                'id': null,
+                'descricao': document.querySelector('#descricao').value,
+                'preco':  document.querySelector('#preco').value,
+                'imagem':  document.querySelector('#imagem').value
+            }
+
+
+            fetch('http://localhost:3000/produtos/', {
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(dados)
+            })
+            
+            .then(Response => {
+                if (response.status === 200) {
+                    document.querySelector ('#resposta').innerHTML = 'produtos atualizados!';
+                }
+            })
+
+            getProdutos()
+        });
+
+        function getProdutos()
+
+        getProdutos();
+    </script>
+</body>
+</html>
