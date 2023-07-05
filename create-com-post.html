@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualização de produtos</title>
+    <title>Cadastro de Produtos</title>
 </head>
 
 <body>
+
     <div id="resposta"></div>
+
     <form action="" method="post">
 
                 <label for="id">ID</label>        
-                <input type="text" id="id"><br>
+                <input type="text" id="id" disabled><br>
 
                 <label for="descricao">Descrição</label>
                 <input type="text" id="descricao"><br>
@@ -22,17 +24,15 @@
                 <label for="imagem">Imagem</label>
                 <input type="text" id="imagem"><br>
 
-            <button type="button" id="btnAtualizar">atualizar</button>
+            <button type="button" id="btnCadastrar">Cadastrar</button>
     </form>
 
-    <div id="listaprodutos"></div>
+    <div id="listaProdutos"></div>
     
     <script>
 
-        document.querySelector('#btnAtualizar').addEventListener('click',
+        document.querySelector('#btnCadastrar').addEventListener('click',
          () => {
-
-            const id = document.querySelector('#id').value;
 
             const dados = {
                 'id': null,
@@ -42,17 +42,19 @@
             }
 
 
-            fetch('http://localhost:3000/produtos/', {
-                method: 'PUT',
+
+            fetch('http://localhost:3000/produtos', {
+                method: 'POST',
                 headers: {
                     'Content-type': 'application/json'
                 },
+
                 body: JSON.stringify(dados)
             })
             
             .then(Response => {
                 if (response.ok ) {
-                    document.querySelector ('#resposta').innerHTML = 'produtos atualizados!';
+                    document.querySelector ('#resposta').innerHTML = 'produtos Cadastrado!';
                 }
             })
 
